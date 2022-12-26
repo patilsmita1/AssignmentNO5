@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h1 class="text-center">Reactive form with Validation</h1>
+
+  <form [formGroup]="registerForm" (ngSubmit)="registerFn()">
+
+    <div class="mb-3">
+      <label for="pname" class="form-label">Project Name</label>
+      <input type="text" class="form-control" id="pname" placeholder="Project Name" formControlName="pname" [ngClass]="{error :getControl('pname')?.errors && getControl('pname')?.touched}">
+      <div *ngIf="getControl('pname')?.errors && getControl('pname')?.touched">
+          <small class="text-danger" *ngIf="getControl('pname')?.errors?.['required']">Should not be empty</small>
+      </div>
+
+    
+    </div>
+      <div class="mb-3">
+       <label for="email" class="form-label">Email</label>
+       <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" [ngClass]="{error :getControl('email')?.errors && getControl('email')?.touched}">
+       <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
+        <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']">Should not be empty</small>
+        <small class="text-danger" *ngIf="getControl('email')?.errors?.['pattern']">Please enter a valid email</small>
+       </div>
+
+       </div>
+
+       <br>
+      <div>
+      <div class="mb-3">
+      <label for="project status" class="form-label">Project Status</label>
+      <select>
+        <option value="1">Stable</option>
+        <option value="2">Critical</option>
+        <option value="3">Finished</option>
+      </select>
+      </div>
+    </div>
+
+     <div class="mb-3">
+      <input type="submit" class="btn btn-success">
+    </div>
+ </form>
+</div>
+
+
+
+<br><br>
+
+<app-validators></app-validators>
